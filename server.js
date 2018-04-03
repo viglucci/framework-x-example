@@ -1,6 +1,8 @@
 const express = require('express');
 const names = require('starwars-names');
-const { Router } = require('framework-x'); // linked locally from https://github.com/viglucci/framework-x
+const framework = require('framework-x'); // linked locally from https://github.com/viglucci/framework-x
+const Router = framework.http.Router
+
 const app = express();
 const router = new Router();
 

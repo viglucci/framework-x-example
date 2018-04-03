@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/viglucci/framework-x-example/issues"
   },
-  "homepage": "https://github.com/viglucci/framework-x-example#readme"
+  "homepage": "https://github.com/viglucci/framework-x-example#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "starwars-names": "^1.6.0"
+  }
 }

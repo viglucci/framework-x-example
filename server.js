@@ -1,8 +1,8 @@
 const express = require('express');
 const names = require('starwars-names');
 const framework = require('framework-x'); // using npm link
-const Router = framework.http.Router
-const RouterFactory = framework.http.ExpressRouterFactory
+const Router = framework.http.Router;
+const RouterFactory = framework.http.ExpressRouterFactory;
 
 const app = express();
 const router = new Router();

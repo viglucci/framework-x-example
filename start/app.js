@@ -7,8 +7,6 @@ const app = express();
 
 ExpressRouterFactory.registerResolver('string', new ControllerRouteHandlerResolver());
 
-const expressRouter = ExpressRouterFactory.create(routes);
-
-app.use(expressRouter);
+app.use(ExpressRouterFactory.create(routes));
 
 module.exports = app;

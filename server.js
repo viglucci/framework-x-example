@@ -1,11 +1,12 @@
 const express = require('express');
 const names = require('starwars-names');
-const framework = require('framework-x'); // using npm link
-const Router = framework.http.Router
-const RouterFactory = framework.http.ExpressRouterFactory
+const { Router, ExpressRouterFactory } = require('framework-x').http; // using npm link
+const ControllerRouteHandlerResolver = require('./http/ControllerRouteHandlerResolver');
 
 const app = express();
 const router = new Router();
+
+ExpressRouterFactory.registerResolver('string', new ControllerRouteHandlerResolver());
 
 router.middleware((req, res, next) => {
     console.log('global middleware', req.url);
@@ -13,7 +14,7 @@ router.middleware((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-    res.send('hello world');
+    res.send('hello world from a route closure');
 });
 
 router.group('/api', (apiRouter) => {
@@ -23,9 +24,7 @@ router.group('/api', (apiRouter) => {
             console.log('v1 middleware', req.url);
             next();
         });
-        apiV1Router.get('/names', (req, res) => {
-            res.json(names.all);
-        });
+        apiV1Router.get('/names', 'V1ApiController.names');
     });
 
     apiRouter.group('/v2', (apiV2Router) => {
@@ -33,13 +32,15 @@ router.group('/api', (apiRouter) => {
             console.log('v2 middleware', req.url);
             next();
         });
-        apiV2Router.get('/names', (req, res) => {
-            res.json(names.all);
-        });
+        apiV2Router.get('/names', 'V2ApiController.names');
     });
 });
 
-app.use(RouterFactory.create(router));
+router.get('/home', 'HomeController.index');
+
+const expressRouter = ExpressRouterFactory.create(router);
+
+app.use(expressRouter);
 
 const port = 3000;
 app.listen(port, () => {

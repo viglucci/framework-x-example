@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,11 @@
   },
   "homepage": "https://github.com/viglucci/framework-x-example#readme",
   "dependencies": {
+    "awilix": "^3.0.7",
     "express": "^4.16.3",
     "starwars-names": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
   }
 }

@@ -4,13 +4,8 @@ const NamedControllerResolver = require('../app/NamedControllerResolver');
 const NamedMiddlewareResolver = require('../app/NamedMiddlewareResolver');
 const routes = require('./routes');
 const { createContainer } = require('awilix');
-const path = require('path');
 
-const autoloadPaths = [
-    path.resolve(`${__dirname}/../app/controllers/*.js`),
-    path.resolve(`${__dirname}/../app/middleware/*.js`),
-    path.resolve(`${__dirname}/../app/*.js`),
-];
+const autoloadPaths = require('./autoload');
 const container = createContainer().loadModules(autoloadPaths);
 
 const app = express();

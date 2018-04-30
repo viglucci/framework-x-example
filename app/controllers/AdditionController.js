@@ -1,11 +1,11 @@
 
 class AdditionController {
   constructor({ AdditionService }) {
-    this.service = AdditionService;
+    this.additionService = AdditionService;
   }
 
   add(req, res) {
-    res.json(this.service.add(~~req.query.a, ~~req.query.b));
+    res.json(this.additionService.add(~~req.query.a, ~~req.query.b));
   }
 }
 

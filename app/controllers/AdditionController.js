@@ -5,7 +5,7 @@ class AdditionController {
   }
 
   add(req, res) {
-    res.json(this.service.add(req.query.a, req.query.b));
+    res.json(this.service.add(~~req.query.a, ~~req.query.b));
   }
 }
 

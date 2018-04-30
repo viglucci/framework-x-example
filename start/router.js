@@ -1,5 +1,4 @@
-const { Router } = require('framework-x').http;
-// using npm link
+const { Router } = require('framework-x').http; // using npm link
 const router = new Router();
 
 router.middleware('GlobalMiddleware');

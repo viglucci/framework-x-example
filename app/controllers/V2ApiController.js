@@ -1,18 +1,13 @@
 const names = require('starwars-names');
 
 class V2ApiController {
-
-    constructor() {
-
+  names(req, res) {
+    const map = {};
+    for (let i = 0; i < names.length; i++) {
+      map[i] = names[i];
     }
-
-    names(req, res, next) {
-        const set = {};
-        names.all.map((name, index) => {
-            set[index] = name;
-        });
-        res.json(set);
-    }
+    res.json(map);
+  }
 }
 
 module.exports = V2ApiController;

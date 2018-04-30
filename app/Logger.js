@@ -1,16 +1,15 @@
 class Logger {
+  info(...args) {
+    console.info(...args);
+  }
 
-    info () {
-        console.log(...arguments);
-    }
+  warn(...args) {
+    console.warn(...args);
+  }
 
-    error() {
-        console.error(...arguments);
-    }
-
-    warn() {
-        console.warn(...arguments);
-    }
+  error(...args) {
+    console.error(...args);
+  }
 }
 
 module.exports = Logger;

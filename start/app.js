@@ -1,16 +1,9 @@
-const express = require('express');
-const { Router, ExpressRouterFactory } = require('framework-x').http; // using npm link
-const NamedControllerResolver = require('../app/NamedControllerResolver');
-const NamedMiddlewareResolver = require('../app/NamedMiddlewareResolver');
-const routes = require('./routes');
-const { createContainer } = require('awilix');
+const { ApplicationContextBuilder } = require('framework-x');
 
-const autoloadPaths = require('./autoload');
-const container = createContainer().loadModules(autoloadPaths);
-
-const app = express();
-ExpressRouterFactory.registerMiddlewareResolver('string', new NamedMiddlewareResolver(container));
-ExpressRouterFactory.registerRouterHandlerResolver('string', new NamedControllerResolver(container));
-app.use(ExpressRouterFactory.create(routes));
+const app = new ApplicationContextBuilder()
+  .withAutoloadPaths(require('./autoload'))
+  .withServiceProviders(require('./providers'))
+  .withRouter(require('./router'))
+  .build();
 
 module.exports = app;
